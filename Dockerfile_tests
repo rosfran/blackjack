@@ -9,10 +9,4 @@ RUN mvn -B -f pom.xml dependency:go-offline
 COPY . /app
 RUN mvn -B install -DskipTests=true
 
-FROM openjdk:11-slim
-
-WORKDIR /app
-
-COPY --from=builder /app/target/*.jar /app
-
 ENTRYPOINT ["mvn", "test" ]
